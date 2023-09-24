@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<context:component-scan base-package="test"></context:component-scan>
+	<bean class="test.GalaxyWatch" id="gw"></bean>
+	
+	<context:component-scan base-package="day59"></context:component-scan>
+	<bean class="day59.RemoteA" id="a"></bean>
+	<!-- <bean class="day59.RemoteB" id="b"></bean> -->
+
+	<bean class="day59.LgTV" id="lTv">
+		<constructor-arg ref="a"></constructor-arg>
+	</bean>
+
+
+	<!--
+	<bean class="test.Ahri" id="ahri">
+		<constructor-arg ref="tti"/>
+	</bean>
+	<bean class="test.Teemo" id="teemo" lazy-init="true">
+		<constructor-arg ref="jsw"/>		
+	</bean>
+
+	<bean class="test.JohnyasSandWatch" id="jsw" lazy-init="true"/>
+	<bean class="test.tenThousandIce" id="tti" lazy-init="true"/>
+
+	<bean class="day59.SamsungTV" id="sTv">
+		<constructor-arg ref="a"></constructor-arg>
+	</bean>
+	
+	<bean class="day59.LgTV" id="lTv">
+		<property name="remote" ref="b"></property>
+	</bean>
+	
+
+	<bean class="day59.RemoteA" id="a"></bean>
+	<bean class="day59.RemoteB" id="b"></bean>
+
+	<bean class="day59.TestBean" id="tb">
+		<property name="testList">
+			<list>
+				<value>작은티모</value>
+				<value>중간티모</value>
+				<value>큰티모</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="day59.TestBean2" id="tb2">
+		<property name="testMap">
+			<map>
+				<entry>
+					<key><value>1001</value></key>
+					<value>작은티모</value>
+				</entry>
+				<entry>
+					<key><value>1002</value></key>
+					<value>중간티모</value>
+				</entry>
+				<entry>
+					<key><value>1003</value></key>
+					<value>큰티모</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	-->
+</beans>
