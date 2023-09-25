@@ -1,0 +1,90 @@
+서버(톰캣,서블릿 컨테이너)가 동작함 == web.xml이 로딩됨
+      => xxx 컨테이너 == xxx.xml
+         설정파일이 있어야 컨테이너가 구동됨
+<servlet> == <bean> == new
+@WebServlet   @Component
+
+
+
+
+
+ViewResolver
+ : Contoller류의 객체가 .handleRequest()의 수행결과로 String을 반환했을때,
+   '어떻게 갈지'와 '어디로 갈지'를 판단해서 처리해주는 주체
+
+
+
+멤버변수 초기화 == 의존관계에 DI
+
+
+
+상대적으로 무거운 파일인 DS의 코드가 변하는 일이 없음!
+   == 재컴파일 할일이 없음!
+
+
+
+
+[Spring MVC로 변경하기]
+1) web.xml에서 내가만든클래스 -> 스프링이 제공하는 클래스
+   WebApplicationContext
+      XxxApplicationContext == 컨테이너를 구동하겠다는 뜻
+               => .xml이 필요하는 뜻
+   DispatcherServlet-servlet 이름의 resource가 필요하다는 문구
+   == [/WEB-INF/DispatcherServlet-servlet.xml]
+   현재 위의 파일이 없기때문에,
+   DS를 초기화(DI)할때 사용되는 .init()이 호출될수없음
+   WEB-INF 하위에 DispatcherServlet-servlet.xml 파일 생성
+1.5) web.xml에 스프링이 제공하는 필터 클래스 추가
+   인코딩
+2) 스프링이 제공하는 클래스로 Controller 변경
+   반환이 String -> ModelAndView 로 변경됨
+3) 사용자의 xxx.do 요청에 대해 수행할 Controller 클래스까지 구현 완료된 상태
+   HM이 요청에 대한 controller 객체 반환을 수행하므로,
+   HM 생성할 차례!!!
+   HM은 DS에서 DI되는 클래스(객체) -> DispatcherServlet-servlet.xml에서 설정함!!!!!
+      (그리고 HM이 POJO니까 web.xml은 안됩니다..ㅎㅅㅎ)
+4) VR에서 포워드를 할지, 리다이렉트를 할지 결정
+※ DB를 방문해야만하는 페이지를 WEB-INF 하위에서 관리하는 VIEW 구조
+   (이유: 에러방지)
+※ 이렇게 은닉된 페이지는 오직 VR를 통해서만 갈수있음!!!!!
+
+
+
+
+
+
+
+
+
+
+
+@Component
+ 1) @Repository      M, DAO
+ 2) @Service      C, Service 레이어에서 활용됨
+ 3) @Controller      C, implements Controller를 대신함
+
+1. 현재 @Controller를 쓰고있어서
+   메서드 강제성이 없음
+   == 메서드 시그니쳐가 고정되어있지않음
+2. 특정 요청에 대해 Controller 객체를 찾아가는 것 xxx
+   메서드를 찾아가는 것 O
+3. 1개의 클래스 파일에 딱 1개의 기능
+   == 응집도가 낮은 상황
+ => 하나의 Controller 클래스에
+   두개이상의 메서드가 있어도되나요???
+
+★★★★★★★★★★★★★★★
+Command 객체
+ : 컨테이너는 객체를 생성 및 관리
+         해당 객체가 언제, 어떤 메서드를 호출해야하는지
+          ex) DS가 초기화될때, init()
+          ex) DS가 .do요청을 받았을때, doGet()(or doPost())
+ : 요청을 받았을때, new VO()는 당연히 하는거고(객체생성이니까)
+   setter()까지 해줄수는없을까?
+ == new는 당연히 수행하고,
+   request로부터 값을 추출해서 setter 처리까지 전부 완료해주는 객체
+★★★★★★★★★★★★★★★
+
+
+
+
