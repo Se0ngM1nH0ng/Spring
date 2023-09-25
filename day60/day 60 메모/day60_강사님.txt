@@ -1,0 +1,97 @@
+회원 테이블
+CREATE TABLE MEMBER(
+	MID VARCHAR(10) PRIMARY KEY,
+	MPW VARCHAR(10) NOT NULL,
+	NAME VARCHAR(20) NOT NULL
+);
+
+게시글 테이블
+CREATE TABLE BOARD(
+	BID INT PRIMARY KEY,
+	TITLE VARCHAR(20) NOT NULL,
+	CONTENT VARCHAR(50) NOT NULL,
+	WRITER VARCHAR(10),
+	CNT INT DEFAULT 0
+);
+오라클에는 자동증가 제약조건이 없음
+ -> 서브쿼리로 해결할 예정
+WRITER 실제 FK 제약조건을 추가 xxx
+ -> 개념적(관념적) FK
+
+비즈니스 메서드 == 비즈니스 로직 == 핵심 관심 == 핵심 로직 == 핵심 메서드 == CRUD
+				concern
+
+
+
+
+
+[오라클 설치]
+http://naver.me/5NAK1TKT
+압축해제
+.exe
+	비밀번호 입력
+	1234
+	1234
+[계정 생성]
+cmd에서 sqlplus sys/oracle as sysdba 입장
+> CREATE USER 계정명
+IDENTIFIED BY 비밀번호(1234)
+ACCOUNT UNLOCK;
+> GRANT CONNECT, RESOURCE TO 계정명;
+[이클립스와 연동]
+드라이버가 필요함(ojdbc6.jar)
+
+@Repository
+ 1) 아! Model 파트구나! -> 스프링 컨테이너가 메모리를 관리하기에 유리 -> 속도향상
+ 2) XxxDAO라고 DAO라고 이름이 안붙을수도있음
+	-> @Repository 덕분에 DAO라고 생각할수있음
+	-> 가독성 좋아짐
+
+
+
+
+
+★ web.xml -> 톰캣(서블릿 컨테이너)에게 설정을 알려주는 파일
+  <servlet>
+    <servlet-name>FrontController</servlet-name>
+    <servlet-class>com.spring.view.controller.FrontController</servlet-class>
+  </servlet>
+	=> new <bean> @Component
+	== @WebServlet
+  <servlet-mapping>
+    <servlet-name>FrontController</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+	=> 해당 서블릿 객체가 언제동작할지에대한 설정
+	== @WebServlet("*.do")
+
+
+
+1) controller.jsp의 코드를 FrontController.java(DispatcherServlet.java)에 옮겨옴
+	-> 유지보수 불리
+2) 모듈화 XxxAction
+	.execute(req,res)
+	=> 인터페이스 Action
+ ↓
+	XxxController
+	.handleRequest(req,res)
+	반환값이 String == 어디로 갈지, 경로, path
+3) 보기 불편함
+	1. 싱글톤 패턴 깨짐
+	2. new를 코드에 직접 작성 => 결합도 높아짐 => 유지보수 불리
+4) 팩토리 패턴을 활용해보자! => HandlerMapping 클래스 등장!
+	mappings를 생성자 주입으로 DI하여 사용
+	요청이름에 대해, 컨트롤러 객체를 반환함
+5) DS에서는 HM을 멤버변수로 활용함
+	HM에 대한 DI를 init() 메서드로 처리함
+
+
+
+
+
+
+
+
+
+
+

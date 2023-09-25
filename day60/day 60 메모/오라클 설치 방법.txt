@@ -1,0 +1,42 @@
+oracle 설치
+
+1. http://naver.me/5NAK1TKT	
+
+2. 다운
+
+3. 압축해제
+
+4. setup.exe 파일 클릭.
+
+5. 설치가 잘됬으면,
+
+6. sqlplus sys/oracle as sysdba
+
+를 입력했을 때, 잘 되어야 한다. => 입장하기.
+
+7. 계정 만들기.
+
+CREATE USER HWAN
+IDENTIFIED BY 1234
+ACCOUNT UNLOCK;
+
+잘됬으면, User created. 가 뜬다.
+
+8. 권한 주기.
+
+GRANT CONNECT, RESOURCE TO HWAN;
+
+잘됬으면 Grant succeeded. 가 뜬다.
+
+8-2. CONNECT HWAN/1234;
+
+잘됬으면 연결되었다고 뜬다.
+
+8-3. SHOW USER;
+
+잘됬으면 USER은 "HWAN" 이라고 뜬다.
+
+9. 오라클을 이클립스와 연동하기. (MySQL 도 가능하다)
+
+드라이버가 필요 하다. (ojdbc6.jar)
+

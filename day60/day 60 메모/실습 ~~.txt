@@ -1,0 +1,56 @@
+-- 회원 테이블
+
+CREATE TABLE MEMBER (
+	MID VARCHAR(10) PRIMARY KEY,
+	MPW VARCHAR(10) NOT NULL,
+	NAME VARCHAR(20) NOT NULL
+);
+
+-> 칼럼을 무작정 테이블에 만드는것 보다,
+	필요한 칼럼이 있는 테이블에서,
+	조인 하여 가져오는 식으로 하는게,
+	DB 테이블의 공간을 절약 할 수 있다.
+
+-- 게시글 테이블
+
+CREATE TABLE BOARD (
+	BID INT PRIMARY KEY,
+	TITLE VARCHAR(20) NOT NULL,
+	CONTENT VARCHAR(50) NOT NULL,
+	WRITER VARCHAR(10),
+	CNT INT DEFAULT 0
+);
+
+현업에서는 BID 라고 안적고,
+BOARDNUM 이런식으로 칼럼명을 풀네임으로 적는다.
+
+오라클에는 자동 증가 제약 조건이 없다.
+-> 서브쿼리로 해결 해야 한다.
+
+WRITER은 실제로 FK 제약 조건을 추가 하지 않는다.
+-> 개념적 (관념적) FK 이다.
+
+-> 회원이 탈퇴 했다 => NULL이면,
+	"탈퇴한 회원입니다" 라고 뜨게 하기.
+-> 원래 FK는 NULL 이면 안되지만,
+	설계를 개념적 (관념적) FK로 했기 때문에,
+	NOT NULL 조건을 제외한 개념 이다.
+
+----------------------------------------
+
+비즈니스 메서드 ==
+비즈니스 로직 ==
+핵심 관심 (concern) ==
+핵심 로직 ==
+핵심 메서드 ==
+CRUD
+
+모두 같은 의미 이다.
+
+
+
+
+
+
+
+
