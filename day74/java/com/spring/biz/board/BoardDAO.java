@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.spring.biz.common.JDBCUtil;
 
+// 이제 적용안함 
 public class BoardDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
