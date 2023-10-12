@@ -25,7 +25,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
-	@ModelAttribute("searchMap")
+	@ModelAttribute("searchMap") "searchMap" 이름으로 보내는 데이터는 제목과 작성자를 포함한다. 
 	public Map<String,String> searchMap(){
 		Map<String,String> map=new HashMap<String,String>();
 		map.put("제목", "TITLE");
