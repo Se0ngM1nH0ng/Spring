@@ -23,13 +23,13 @@ public class TestController {
 	}
 	
 	@RequestMapping(value="/test.do", method=RequestMethod.POST)
-	@ResponseBody
+	@ResponseBody // 비동기 처리 부분 
 	public String test(@RequestParam("count")int count, @RequestParam("apple")int apple, @RequestParam("banana")String banana) {
 		System.out.println("count : "+count);
 		System.out.println("apple : "+apple);
 		System.out.println("banana : "+banana);
 		count++;
-		return String.valueOf(count);
+		return String.valueOf(count); // 형변환
 	}
 	
 }
