@@ -100,7 +100,7 @@ public class BoardController {
 	@RequestMapping(value="/insertBoard.do", method=RequestMethod.POST)
 	public String insertBoard(BoardVO bVO) throws IllegalStateException, IOException {
 		MultipartFile fileUpload=bVO.getFileUpload();
-		if(!fileUpload.isEmpty()){
+		if(!fileUpload.isEmpty()){ // 파일업로드가 있을 시
 			String fileName=fileUpload.getOriginalFilename();
 			System.out.println("파일명: "+fileName);
 			
