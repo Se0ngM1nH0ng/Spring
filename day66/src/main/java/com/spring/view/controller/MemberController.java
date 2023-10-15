@@ -15,7 +15,7 @@ import com.spring.biz.member.MemberVO;
 public class MemberController { // 비슷한 로직끼리 같은 파일에서 관리하기때문에 응집도가 높아짐
 
 	@Autowired
-	private MemberService memberService;
+	private MemberService memberService; // 서비스 레이어 사용 
 	
 	@RequestMapping(value="/check.do")
 	public String checkPage() {
